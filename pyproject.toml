@@ -28,7 +28,7 @@ package-dir = {"" = "src"}
 packages = ["spotify"]
 
 [tool.ruff]
-line-length = 100
+line-length = 120
 target-version = "py312"
 select = ["E", "F", "I", "B", "W", "C4", "N", "UP", "PL", "RUF"]
 ignore = []
