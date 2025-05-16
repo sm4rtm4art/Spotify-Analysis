@@ -7,6 +7,7 @@ requires-python = ">=3.12"
 dependencies = [
     "kagglehub>=0.3.12",
     "matplotlib>=3.10.0",
+    "nbqa>=1.7.1",
     "numpy>=2.1.3",
     "pandas>=2.2.3",
     "polars>=1.29.0",
@@ -27,7 +28,7 @@ package-dir = {"" = "src"}
 packages = ["spotify"]
 
 [tool.ruff]
-line-length = 120
+line-length = 100
 target-version = "py312"
 select = ["E", "F", "I", "B", "W", "C4", "N", "UP", "PL", "RUF"]
 ignore = []
