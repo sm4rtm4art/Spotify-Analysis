@@ -6,17 +6,22 @@ repos:
         args: [--fix]
       - id: ruff-format
 
-  # Temporarily disable nbqa until we can fix it
-  # - repo: https://github.com/nbQA-dev/nbQA
-  #   rev: 1.7.1
-  #   hooks:
-  #     - id: nbqa-ruff
-  #       additional_dependencies: [ruff>=0.1.11]
-  #       args: ["--ignore=E501,E402"]
-  #       files: ^notebooks/.*\.ipynb$
-  #       exclude: ^notebooks/.*(?:empty|broken).*\.ipynb$
-  #       verbose: true
-  #       always_run: false
+  # Notebook linting with nbqa
+  - repo: https://github.com/nbQA-dev/nbQA
+    rev: 1.9.1
+    hooks:
+      - id: nbqa-ruff
+        additional_dependencies: [ruff>=0.1.11]
+        args: [
+          "--fix",
+          # Notebook-specific ignores:
+          "--ignore=F401,F821,E402,E501,W291,W293",  # Ignore unused imports, undefined names, import position, line length, trailing whitespace
+          "--extend-select=I"  # Still enforce import sorting
+        ]
+        files: ^notebooks/.*\.ipynb$
+        exclude: ^notebooks/.*(?:empty|broken).*\.ipynb$
+        # Make verbose to see what's happening
+        verbose: true
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0

@@ -13,7 +13,7 @@ dependencies = [
     "polars>=1.29.0",
     "pre-commit>=3.6.0",
     "pytest>=8.0.0",
-    "ruff>=0.11.10",
+    "ruff>=0.1.11",
     "scikit-learn>=1.6.1",
     "seaborn>=0.13.2",
     "ydata-profiling>=4.16.1",
@@ -30,8 +30,6 @@ packages = ["spotify"]
 [tool.ruff]
 line-length = 120
 target-version = "py312"
-select = ["E", "F", "I", "B", "W", "C4", "N", "UP", "PL", "RUF"]
-ignore = []
 exclude = [
     ".git",
     ".ruff_cache",
@@ -43,13 +41,30 @@ exclude = [
     "data",
 ]
 
-[tool.ruff.isort]
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "W", "C4", "N", "UP", "PL", "RUF"]
+ignore = []
+
+[tool.ruff.lint.isort]
 known-first-party = ["spotify"]
 
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "space"
 line-ending = "auto"
+
+[tool.ruff.lint.per-file-ignores]
+# Specific rules for notebook files
+"notebooks/**/*.ipynb" = [
+    "E402",  # Module level import not at top of file
+    "E501",  # Line too long
+    "F401",  # Imported but unused
+    "F403",  # 'from module import *' used
+    "F405",  # Name may be undefined from star imports
+    "F821",  # Undefined name (like 'display')
+    "W291",  # Trailing whitespace
+    "W293",  # Blank line contains whitespace
+]
 
 [tool.pytest]
 testpaths = ["tests"]
