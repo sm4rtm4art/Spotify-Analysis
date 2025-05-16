@@ -12,6 +12,11 @@ repos:
       - id: nbqa-ruff
         additional_dependencies: [ruff>=0.1.11]
         args: ["--ignore=E501,E402"]  # Ignore line length and import position in notebooks
+        files: ^notebooks/.*\.ipynb$
+        exclude: ^notebooks/.*(?:empty|broken).*\.ipynb$
+        # Continue even if a notebook has issues
+        verbose: true
+        always_run: false
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
