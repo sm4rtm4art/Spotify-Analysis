@@ -46,6 +46,7 @@ This project is an exploratory and learning endeavor. Our primary objectives inc
 - **Scikit-learn:** For machine learning tasks.
 - **KaggleHub:** For programmatic dataset access.
 - **Ruff:** For linting and formatting, ensuring clean code.
+- **pre-commit:** For automatically checking code quality before commits.
 
 ## Getting Started
 
@@ -69,8 +70,8 @@ This project is an exploratory and learning endeavor. Our primary objectives inc
 2.  **Clone the repository (if applicable).**
 
     ```bash
-    # git clone <repository-url>
-    # cd <repository-name>
+    git clone https://github.com/sm4rtm4art/Spotify-Analysis.git
+    cd Spotify-Analysis
     ```
 
 3.  **Set up the project environment using `uv`:**
@@ -96,10 +97,43 @@ This project is an exploratory and learning endeavor. Our primary objectives inc
 
     Your terminal prompt should now indicate that you are in the `.venv` environment.
 
-5.  **Download the data:** The dataset can be downloaded using the `kagglehub` library. A script or notebook will be provided within the `notebooks` or `scripts` directory for this purpose. (We'll add this part soon!)
+5.  **Set up pre-commit hooks:**
+    This project uses pre-commit hooks to ensure code quality. After activating your virtual environment, install the hooks:
 
-6.  **Explore the notebooks and scripts!**
+    ```bash
+    pre-commit install
+    ```
+
+    Now, every time you commit, code quality checks will run automatically.
+
+6.  **Download the data:** The dataset can be downloaded using the `kagglehub` library. A script or notebook will be provided within the `notebooks` or `scripts` directory for this purpose.
+
+7.  **Explore the notebooks and scripts!**
     You'll likely find these in a `notebooks/` or `scripts/` directory.
+
+## Development Workflow
+
+This project includes a Makefile to simplify common development tasks:
+
+```bash
+# For a list of available commands
+make help
+
+# To set up the environment and pre-commit hooks
+make setup
+
+# To run linting
+make lint
+
+# To format code
+make format
+
+# To run tests
+make test
+
+# To install pre-commit hooks only
+make pre-commit
+```
 
 **Basic `uv` usage for this project:**
 

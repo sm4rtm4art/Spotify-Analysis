@@ -1,0 +1,45 @@
+name: Python CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  quality-checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff pytest
+          pip install -e .
+
+      - name: Lint with ruff
+        run: |
+          ruff check .
+
+      - name: Format check with ruff
+        run: |
+          ruff format --check .
+
+      - name: Test with pytest
+        run: |
+          pytest tests/
+
+  # Optional: Add a separate job for deployment if needed later
+  # deploy:
+  #   needs: quality-checks
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     # Deployment steps here
